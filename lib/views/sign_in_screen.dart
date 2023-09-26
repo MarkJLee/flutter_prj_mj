@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_mj/utils/utils.dart';
-import 'package:flutter_prj_mj/views/sign_in_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
-class SignUpScreen extends ConsumerWidget {
-  static String routeURL = "/signup";
-  static String routeName = "signUp";
-
-  SignUpScreen({super.key});
+class SignInScreen extends ConsumerWidget {
+  static String routeURL = "/signin";
+  static String routeName = "signIn";
+  SignInScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _onPressedCreateAccount() {}
-
-  void _onPressedLogin(BuildContext context) {
-    context.pushNamed(SignInScreen.routeName);
-  }
+  void _onPressedLogin() {}
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,7 +41,7 @@ class SignUpScreen extends ConsumerWidget {
                               "assets/images/moodJournal_icon.png"),
                         ),
                         Text(
-                          "Join Us",
+                          "WELCOME",
                           style: Theme.of(context).textTheme.headlineLarge,
                         ),
                         const SizedBox(
@@ -78,27 +71,9 @@ class SignUpScreen extends ConsumerWidget {
                         SizedBox(
                           width: double.infinity,
                           child: FilledButton(
-                            onPressed: _onPressedCreateAccount,
+                            onPressed: _onPressedLogin,
                             child: const Text(
-                              "Create Account",
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: FilledButton(
-                            onPressed: () => _onPressedLogin(context),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Login",
-                                ),
-                                Icon(Icons.arrow_forward_sharp),
-                              ],
+                              "Login",
                             ),
                           ),
                         ),

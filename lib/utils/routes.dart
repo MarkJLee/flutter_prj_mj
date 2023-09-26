@@ -31,7 +31,7 @@ final routerProvider = Provider((ref) {
         GoRoute(
           name: SignInScreen.routeName,
           path: SignInScreen.routeURL,
-          builder: (context, state) => const SignInScreen(),
+          builder: (context, state) => SignInScreen(),
         ),
       ]);
 });
