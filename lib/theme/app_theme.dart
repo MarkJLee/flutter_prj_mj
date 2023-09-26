@@ -10,7 +10,6 @@ final lightTheme = FlexThemeData.light(
   scheme: FlexScheme.purpleM3,
   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
   blendLevel: 7,
-  appBarStyle: FlexAppBarStyle.custom,
   subThemesData: const FlexSubThemesData(
     blendOnLevel: 10,
     blendOnColors: false,
@@ -37,7 +36,6 @@ final darkTheme = FlexThemeData.dark(
     alignedDropdown: true,
     useInputDecoratorThemeInDialogs: true,
   ),
-  // colorScheme: flexSchemeDark,
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
   swapLegacyOnMaterial3: true,

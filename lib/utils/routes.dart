@@ -1,10 +1,12 @@
 import 'package:flutter_prj_mj/views/home_screen.dart';
+import 'package:flutter_prj_mj/views/sign_in_screen.dart';
+import 'package:flutter_prj_mj/views/sign_up_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-      initialLocation: "/",
+      initialLocation: "/signup",
       // redirect: (context, state) {
       //   final isLoggedIn = ref.read(authRepo).isLoggedIn;
       //   if (!isLoggedIn) {
@@ -20,6 +22,16 @@ final routerProvider = Provider((ref) {
           name: HomeScreen.routeName,
           path: HomeScreen.routeURL,
           builder: (context, state) => const HomeScreen(),
-        )
+        ),
+        GoRoute(
+          name: SignUpScreen.routeName,
+          path: SignUpScreen.routeURL,
+          builder: (context, state) => SignUpScreen(),
+        ),
+        GoRoute(
+          name: SignInScreen.routeName,
+          path: SignInScreen.routeURL,
+          builder: (context, state) => const SignInScreen(),
+        ),
       ]);
 });
