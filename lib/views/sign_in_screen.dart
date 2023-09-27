@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_mj/utils/utils.dart';
+import 'package:flutter_prj_mj/viewmodels/sign_in_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignInScreen extends ConsumerWidget {
@@ -8,8 +9,16 @@ class SignInScreen extends ConsumerWidget {
   SignInScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  void _onPressedLogin() {}
+  void _onPressedLogin(BuildContext context, WidgetRef ref) {
+    ref.read(loginProvider.notifier).login(
+          _emailController.text,
+          _passwordController.text,
+          context,
+        );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,6 +57,7 @@ class SignInScreen extends ConsumerWidget {
                           height: 20,
                         ),
                         TextFormField(
+                          controller: _emailController,
                           decoration: const InputDecoration(
                             labelText: "Email",
                             hintText: "Enter your email",
@@ -58,6 +68,7 @@ class SignInScreen extends ConsumerWidget {
                           height: 20,
                         ),
                         TextFormField(
+                          controller: _passwordController,
                           decoration: const InputDecoration(
                             labelText: "Password",
                             hintText: "Enter your password",
@@ -71,7 +82,7 @@ class SignInScreen extends ConsumerWidget {
                         SizedBox(
                           width: double.infinity,
                           child: FilledButton(
-                            onPressed: _onPressedLogin,
+                            onPressed: () => _onPressedLogin(context, ref),
                             child: const Text(
                               "Login",
                             ),
