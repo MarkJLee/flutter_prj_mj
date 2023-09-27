@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_mj/utils/utils.dart';
+import 'package:flutter_prj_mj/viewmodels/sign_up_view_model.dart';
 import 'package:flutter_prj_mj/views/sign_in_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,8 +12,20 @@ class SignUpScreen extends ConsumerWidget {
   SignUpScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  void _onPressedCreateAccount() {}
+  void _onPressedCreateAccount(BuildContext context, WidgetRef ref) async {
+    if (_formKey.currentState?.validate() ?? false) {
+      String email = _emailController.text;
+      String password = _passwordController.text;
+      ref.read(signUpForm.notifier).state = {
+        "email": email,
+        "password": password,
+      };
+      await ref.read(signUpProvider.notifier).signUp(context);
+    }
+  }
 
   void _onPressedLogin(BuildContext context) {
     context.pushNamed(SignInScreen.routeName);
@@ -55,6 +68,7 @@ class SignUpScreen extends ConsumerWidget {
                           height: 20,
                         ),
                         TextFormField(
+                          controller: _emailController,
                           decoration: const InputDecoration(
                             labelText: "Email",
                             hintText: "Enter your email",
@@ -65,6 +79,7 @@ class SignUpScreen extends ConsumerWidget {
                           height: 20,
                         ),
                         TextFormField(
+                          controller: _passwordController,
                           decoration: const InputDecoration(
                             labelText: "Password",
                             hintText: "Enter your password",
@@ -78,7 +93,8 @@ class SignUpScreen extends ConsumerWidget {
                         SizedBox(
                           width: double.infinity,
                           child: FilledButton(
-                            onPressed: _onPressedCreateAccount,
+                            onPressed: () =>
+                                _onPressedCreateAccount(context, ref),
                             child: const Text(
                               "Create Account",
                             ),
