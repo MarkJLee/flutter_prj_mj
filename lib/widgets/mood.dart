@@ -32,10 +32,10 @@ extension MoodExtension on Mood {
 }
 
 final List<Color> moodColors = [
-  Colors.purple,
-  Colors.blue.shade800,
-  Colors.blue.shade500,
-  Colors.blue.shade300,
+  Colors.purple.shade500,
+  Colors.blue.shade600,
+  Colors.blue.shade400,
+  Colors.cyan,
   Colors.lightGreen,
   Colors.green,
   Colors.orange,

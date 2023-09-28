@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_prj_mj/models/post_model.dart';
 import 'package:flutter_prj_mj/services/post_repo.dart';
 import 'package:flutter_prj_mj/widgets/feeling.dart';
 import 'package:flutter_prj_mj/widgets/mood.dart';
@@ -17,6 +18,10 @@ class PostViewModel {
 
   Future<void> deletePost(String userId, String postId) {
     return _postRepo.deletePost(userId, postId);
+  }
+
+  Future<List<PostModel>> getPosts(String userId) {
+    return _postRepo.getPosts(userId);
   }
 }
 

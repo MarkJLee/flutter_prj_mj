@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_mj/services/authentication_repo.dart';
-import 'package:flutter_prj_mj/views/sign_in_screen.dart';
+import 'package:flutter_prj_mj/views/sign_up_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +26,7 @@ class ConfigureScreen extends ConsumerWidget {
             TextButton(
               onPressed: () {
                 ref.read(authRepoProvider).signOut();
-                context.goNamed(SignInScreen.routeName);
+                context.goNamed(SignUpScreen.routeName);
               },
               child: const Text('Sign Out'),
             ),
