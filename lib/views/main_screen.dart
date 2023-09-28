@@ -5,36 +5,38 @@ import 'package:flutter_prj_mj/views/post_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class MainScreen extends ConsumerStatefulWidget {
+class MainScreen extends ConsumerWidget {
   static String routeURL = "/main";
   static String routeName = "main";
   const MainScreen({super.key});
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends ConsumerState<MainScreen> {
-  int _selectedIndex = 0;
+  // final int _selectedIndex = 0;
   static final List<Widget> _screens = <Widget>[
     const HomeScreen(),
     const PostScreen(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  static void _onItemTapped(WidgetRef ref, int index) {
+    // state 변경시, .notifier 사용
+    ref.read(selectedIndexProvider.notifier).state = index;
   }
 
-  void _onTapSettingIcon(BuildContext context) {
+  static void _onTapSettingIcon(BuildContext context) {
     context.pushNamed(ConfigureScreen.routeName);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // state 확인시 .watch(selectedIndexProvider) 사용
+    final selectedIndex = ref.watch(selectedIndexProvider);
     return Scaffold(
       appBar: AppBar(
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 15.0),
+          child: Image(
+            image: AssetImage("assets/images/moodJournal_icon.png"),
+          ),
+        ),
         title: const Text("Mood Journal"),
         actions: [
           Padding(
@@ -44,7 +46,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   child: const Icon(Icons.settings_suggest))),
         ],
       ),
-      body: _screens.elementAt(_selectedIndex),
+      body: _screens.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -56,9 +58,11 @@ class _MainScreenState extends ConsumerState<MainScreen> {
             label: 'Post',
           ),
         ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: selectedIndex,
+        onTap: (index) => _onItemTapped(ref, index),
       ),
     );
   }
 }
+
+final selectedIndexProvider = StateProvider<int>((ref) => 0);
