@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_mj/utils/utils.dart';
-import 'package:flutter_prj_mj/viewmodels/sign_in_view_model.dart';
+import 'package:flutter_prj_mj/viewmodels/authentication_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignInScreen extends ConsumerWidget {
@@ -13,7 +13,7 @@ class SignInScreen extends ConsumerWidget {
   final TextEditingController _passwordController = TextEditingController();
 
   void _onPressedLogin(BuildContext context, WidgetRef ref) {
-    ref.read(loginProvider.notifier).login(
+    ref.read(authProvider.notifier).signIn(
           _emailController.text,
           _passwordController.text,
           context,

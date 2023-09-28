@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_prj_mj/utils/utils.dart';
-import 'package:flutter_prj_mj/viewmodels/sign_up_view_model.dart';
+import 'package:flutter_prj_mj/viewmodels/authentication_view_model.dart';
 import 'package:flutter_prj_mj/views/sign_in_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +23,7 @@ class SignUpScreen extends ConsumerWidget {
         "email": email,
         "password": password,
       };
-      await ref.read(signUpProvider.notifier).signUp(context);
+      await ref.read(authProvider.notifier).signUp(context);
     }
   }
 
