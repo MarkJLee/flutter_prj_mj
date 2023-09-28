@@ -33,3 +33,7 @@ Develop a mood tracker application utilizing Flutter. Implement Firebase Authent
 2. "Below the input, a row of emoji buttons should be displayed."
 
 3. "Upon pressing the 'Post' button, a mood entry should be instantiated in Firestore, and the user should be routed to the `HomeScreen` where the new entry is visible."
+
+## Demo
+
+[https://imgur.com/1znFSO1]
