@@ -24,6 +24,10 @@ class AuthenticationRepository {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
+  String? getCurrentUserId() {
+    return FirebaseAuth.instance.currentUser?.uid;
+  }
 }
 
 final authRepoProvider = Provider((ref) => AuthenticationRepository());

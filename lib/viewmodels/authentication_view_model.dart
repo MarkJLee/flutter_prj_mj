@@ -45,6 +45,10 @@ class AuthenticationViewModel extends AsyncNotifier<void> {
       context.goNamed(MainScreen.routeName);
     }
   }
+
+  String? getCurrentUserId() {
+    return _authRepo.getCurrentUserId();
+  }
 }
 
 final signUpForm = StateProvider((ref) => {});
